@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/GangOfThrees/Obi-wan/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 )

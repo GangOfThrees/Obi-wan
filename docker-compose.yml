@@ -1,0 +1,10 @@
+version: '3'
+services:
+  kenobi:
+    env_file:
+      - ./kenobi/.env
+    build:
+      context: ./kenobi
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"

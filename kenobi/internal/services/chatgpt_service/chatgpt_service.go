@@ -4,8 +4,8 @@ import (
 	"errors"
 	"os"
 
-	"github.com/GangOfThrees/Obi-wan/internal/constants"
-	"github.com/GangOfThrees/Obi-wan/internal/models"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/models"
 )
 
 // chatGptBotService is a struct that represents the chatgpt bot service.

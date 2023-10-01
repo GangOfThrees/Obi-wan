@@ -1,6 +1,6 @@
 package dtos
 
-import "github.com/GangOfThrees/Obi-wan/internal/models"
+import "github.com/GangOfThrees/Obi-wan/kenobi/internal/models"
 
 // AnswerDto is a struct that represents the data transfer object for answers.
 type AnswerDto struct {
