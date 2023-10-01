@@ -1,10 +1,28 @@
 version: '3'
+
 services:
+  darth-vader:
+    container_name: obi-wan_darth-vader
+    env_file:
+      - ./darth-vader/.env
+    build:
+      context: .
+      dockerfile: ./darth-vader/Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - obi-wan
+
   kenobi:
+    container_name: obi-wan_kenobi
     env_file:
       - ./kenobi/.env
     build:
-      context: ./kenobi
-      dockerfile: ./Dockerfile
-    ports:
-      - "8000:8000"
+      context: .
+      dockerfile: ./kenobi/Dockerfile
+    networks:
+      - obi-wan
+
+networks:
+  obi-wan:
+    driver: bridge

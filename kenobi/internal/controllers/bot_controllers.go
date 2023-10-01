@@ -5,6 +5,7 @@ import (
 	"github.com/GangOfThrees/Obi-wan/kenobi/internal/controllers/dtos"
 	"github.com/GangOfThrees/Obi-wan/kenobi/internal/services"
 	"github.com/GangOfThrees/Obi-wan/kenobi/internal/utils"
+	lightsabers "github.com/GangOfThrees/Obi-wan/lightsabers/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 )
@@ -16,7 +17,7 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 		log.Errorf("Failed to parse request body: %v", err)
 		return ctx.
 			Status(fiber.StatusInternalServerError).
-			JSON(utils.GetErrorResponse("Failed to parse request body", err))
+			JSON(lightsabers.GetErrorResponse("Failed to parse request body", err))
 	}
 
 	err := services.ValidateStruct(&body)
@@ -24,7 +25,7 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 		log.Errorf("Failed to validate body: %v", err)
 		return ctx.
 			Status(fiber.StatusBadRequest).
-			JSON(utils.GetErrorResponse("Invalid request body", err))
+			JSON(lightsabers.GetErrorResponse("Invalid request body", err))
 	}
 
 	reqHeaders := ctx.GetReqHeaders()
@@ -35,7 +36,7 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 		log.Errorf("Failed to get convo session: %v", err)
 		return ctx.
 			Status(fiber.StatusInternalServerError).
-			JSON(utils.GetErrorResponse("Failed to get convo session", err))
+			JSON(lightsabers.GetErrorResponse("Failed to get convo session", err))
 	}
 
 	chatSessionId := session.ID()
@@ -45,7 +46,7 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 		log.Errorf("Failed to get answer: %v", err)
 		return ctx.
 			Status(fiber.StatusInternalServerError).
-			JSON(utils.GetErrorResponse("Failed to get answer", err))
+			JSON(lightsabers.GetErrorResponse("Failed to get answer", err))
 	}
 
 	if err = session.Save(); err != nil {
@@ -54,5 +55,5 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 
 	return ctx.
 		Status(fiber.StatusOK).
-		JSON(utils.GetSuccessResponse("Successfully retrieved answer", dtos.ToAnswerDto(ans)))
+		JSON(lightsabers.GetSuccessResponse("Successfully retrieved answer", dtos.ToAnswerDto(ans)))
 }

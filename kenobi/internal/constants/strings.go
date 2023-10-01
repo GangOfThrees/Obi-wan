@@ -8,7 +8,6 @@ const (
 	CHAT_GPT_BASE_URL    = "CHAT_GPT_BASE_URL"
 
 	// HTTP constants
-	HTTP_HEADER_X_API_KEY     = "X-Api-Key"
 	HTTP_HEADER_X_BOT_SERVICE = "X-Bot-Service"
 
 	// endpoints
