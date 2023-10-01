@@ -1,4 +1,4 @@
-module github.com/GangOfThrees/Obi-wan
+module github.com/GangOfThrees/Obi-wan/kenobi
 
 go 1.20
 

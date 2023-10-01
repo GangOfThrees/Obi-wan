@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"github.com/GangOfThrees/Obi-wan/internal/models"
-	"github.com/GangOfThrees/Obi-wan/internal/services"
-	chatgptservice "github.com/GangOfThrees/Obi-wan/internal/services/chatgpt_service"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/models"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/services"
+	chatgptservice "github.com/GangOfThrees/Obi-wan/kenobi/internal/services/chatgpt_service"
 )
 
 // function to get formatted error response

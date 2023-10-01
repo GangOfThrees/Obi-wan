@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"github.com/GangOfThrees/Obi-wan/internal/constants"
-	"github.com/GangOfThrees/Obi-wan/internal/utils"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/utils"
 	"github.com/gofiber/fiber/v2"
 )
 

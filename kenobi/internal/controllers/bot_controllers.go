@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/GangOfThrees/Obi-wan/internal/constants"
-	"github.com/GangOfThrees/Obi-wan/internal/controllers/dtos"
-	"github.com/GangOfThrees/Obi-wan/internal/services"
-	"github.com/GangOfThrees/Obi-wan/internal/utils"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/controllers/dtos"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/services"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 )

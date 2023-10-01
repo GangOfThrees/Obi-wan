@@ -3,8 +3,8 @@ package controllers
 import (
 	"time"
 
-	"github.com/GangOfThrees/Obi-wan/internal/constants"
-	"github.com/GangOfThrees/Obi-wan/internal/middlewares"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/middlewares"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/helmet"

@@ -1,14 +1,8 @@
 {
   "folders": [
     {
-      "path": "./darth-vader"
+      "path": "."
     },
-    {
-      "path": "./skywalker"
-    },
-    {
-      "path": "./kenobi"
-    }
   ],
   "settings": {}
 }

@@ -7,8 +7,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 
-	"github.com/GangOfThrees/Obi-wan/internal/constants"
-	"github.com/GangOfThrees/Obi-wan/internal/controllers"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/kenobi/internal/controllers"
 )
 
 func init() {
