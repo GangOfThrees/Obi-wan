@@ -3,8 +3,8 @@ package controllers
 import (
 	"time"
 
-	"github.com/Aceix/eli-bot/internal/constants"
-	"github.com/Aceix/eli-bot/internal/middlewares"
+	"github.com/GangOfThrees/Obi-wan/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/internal/middlewares"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/helmet"

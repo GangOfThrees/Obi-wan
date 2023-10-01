@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Aceix/eli-bot/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/internal/constants"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 )
@@ -29,11 +29,11 @@ func SendChat(model string, messages []Message) (CompletionObject, error) {
 	if err != nil {
 		return res, err
 	}
-	log.Infof("%s", b)
 	agent.Set("Authorization", fmt.Sprintf("Bearer %s", GetChatGptBotServiceInstance().ApiKey))
 	agent.Set("Content-Type", "application/json")
 	agent.Body(b)
 
+	log.Info("Sending request to OpenAI")
 	statusCode, body, errs := agent.Bytes()
 	if len(errs) > 0 {
 		return res, errors.Join(errs...)

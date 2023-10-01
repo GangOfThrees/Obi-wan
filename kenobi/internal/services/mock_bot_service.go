@@ -3,8 +3,8 @@ package services
 import (
 	"os"
 
-	"github.com/Aceix/eli-bot/internal/constants"
-	"github.com/Aceix/eli-bot/internal/models"
+	"github.com/GangOfThrees/Obi-wan/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/internal/models"
 )
 
 var mockBotServiceInstance *mockBotService

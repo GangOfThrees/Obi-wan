@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/Aceix/eli-bot/internal/constants"
-	"github.com/Aceix/eli-bot/internal/controllers/dtos"
-	"github.com/Aceix/eli-bot/internal/services"
-	"github.com/Aceix/eli-bot/internal/utils"
+	"github.com/GangOfThrees/Obi-wan/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/internal/controllers/dtos"
+	"github.com/GangOfThrees/Obi-wan/internal/services"
+	"github.com/GangOfThrees/Obi-wan/internal/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 )

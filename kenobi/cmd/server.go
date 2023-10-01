@@ -7,8 +7,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 
-	"github.com/Aceix/eli-bot/internal/constants"
-	"github.com/Aceix/eli-bot/internal/controllers"
+	"github.com/GangOfThrees/Obi-wan/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/internal/controllers"
 )
 
 func init() {

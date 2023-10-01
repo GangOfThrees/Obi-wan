@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"github.com/Aceix/eli-bot/internal/constants"
-	"github.com/Aceix/eli-bot/internal/utils"
+	"github.com/GangOfThrees/Obi-wan/internal/constants"
+	"github.com/GangOfThrees/Obi-wan/internal/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
