@@ -6,11 +6,10 @@ const (
 	MOCK_BOT_API_KEY     = "MOCK_BOT_API_KEY"
 	SERVER_PORT          = "SERVER_PORT"
 	CHAT_GPT_BASE_URL    = "CHAT_GPT_BASE_URL"
+	DB_FLAVOUR           = "DB_FLAVOUR"
+	DB_CONN_STRING       = "DB_CONN_STRING"
+	DB_MAX_CONNS         = "DB_MAX_CONNS"
 
 	// HTTP constants
 	HTTP_HEADER_X_BOT_SERVICE = "X-Bot-Service"
-
-	// endpoints
-	ENDPOINT_BOT            = "/bot"
-	ENDPOINT_KNOWLEDGE_BASE = "/kb"
 )
