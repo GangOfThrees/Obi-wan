@@ -40,12 +40,12 @@ func RegisterMiddlewares(app *fiber.App) {
 
 func RegisterRoutes(app *fiber.App) {
 	// register bot routes
-	RegisterBotServiceRoutes(app)
+	registerKenobiRoutes(app)
 
 	// TODO: register health check route
 }
 
-func RegisterBotServiceRoutes(app *fiber.App) {
+func registerKenobiRoutes(app *fiber.App) {
 	proxyConfig := proxy.Config{
 		Timeout: 30 * time.Second, // TODO: consider extracting to env var
 		Servers: []string{
@@ -62,4 +62,5 @@ func RegisterBotServiceRoutes(app *fiber.App) {
 	}
 
 	app.Group(constants.ENDPOINT_BOT, proxy.Balancer(proxyConfig))
+	app.Group(constants.ENPOINT_USERS, proxy.Balancer(proxyConfig))
 }

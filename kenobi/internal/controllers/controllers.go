@@ -3,7 +3,6 @@ package controllers
 import (
 	"time"
 
-	"github.com/GangOfThrees/Obi-wan/kenobi/internal/constants"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -30,13 +29,19 @@ func RegisterMiddlewares(app *fiber.App) {
 }
 
 func RegisterRoutes(app *fiber.App) {
-	// register bot routes
-	RegisterBotRoutes(app)
+	registerBotRoutes(app)
+	registerUserRoutes(app)
 
 	// TODO: register health check route
 }
 
-func RegisterBotRoutes(app *fiber.App) {
-	botRoutes := app.Group(constants.ENDPOINT_BOT)
-	botRoutes.Post(constants.ENDPOINT_KNOWLEDGE_BASE, KnowledgeBase)
+func registerBotRoutes(app *fiber.App) {
+	botRoutes := app.Group("/bot")
+	botRoutes.Post("/kb", KnowledgeBase)
+}
+
+func registerUserRoutes(app *fiber.App) {
+	userRoutes := app.Group("/users")
+	userRoutes.Post("/", CreateUser)
+	userRoutes.Get("/", GetUsers)
 }

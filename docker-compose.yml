@@ -1,8 +1,11 @@
-version: '3'
+version: "3"
 
 services:
   darth-vader:
     container_name: obi-wan_darth-vader
+    depends_on:
+      - db
+      - cache
     env_file:
       - ./darth-vader/.env
     build:
@@ -15,6 +18,9 @@ services:
 
   kenobi:
     container_name: obi-wan_kenobi
+    depends_on:
+      - db
+      - cache
     env_file:
       - ./kenobi/.env
     build:
@@ -23,6 +29,34 @@ services:
     networks:
       - obi-wan
 
+  db:
+    image: postgres:16.0
+    container_name: obi-wan_db
+    restart: always
+    ports:
+      - "5432:5432" # expose for debugging purposes
+    environment:
+      POSTGRES_USER: obiwan
+      POSTGRES_PASSWORD: ${DB_ROOT_PASSWORD}
+      POSTGRES_DB: obiwan
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - obi-wan
+
+  cache:
+    image: redis:alpine
+    container_name: obi-wan_cache
+    restart: always
+    networks:
+      - obi-wan
+    volumes:
+      - cache-data:/data
+
 networks:
   obi-wan:
     driver: bridge
+
+volumes:
+  db-data:
+  cache-data:
