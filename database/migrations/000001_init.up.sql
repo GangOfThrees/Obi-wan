@@ -1,4 +1,11 @@
+BEGIN TRANSACTION;
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TYPE OrganisationStatus AS ENUM (
+  'inactive',
+  'active'
+);
 
 CREATE SCHEMA obiwan;
 
@@ -27,7 +34,7 @@ CREATE TABLE obiwan.organisations (
   phone TEXT,
   website TEXT,
   email TEXT NOT NULL,
-  status ENUM('active', 'inactive') NOT NULL DEFAULT 'inactive',
+  status OrganisationStatus NOT NULL DEFAULT 'inactive',
   preferredBotService TEXT,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -91,3 +98,5 @@ CREATE TABLE obiwan.apiKeys (
 
   CONSTRAINT fkApiKeysProjectId FOREIGN KEY (projectId) REFERENCES obiwan.projects(id) ON DELETE RESTRICT
 );
+
+END TRANSACTION;

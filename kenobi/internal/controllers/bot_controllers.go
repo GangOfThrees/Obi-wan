@@ -14,7 +14,7 @@ import (
 func KnowledgeBase(ctx *fiber.Ctx) error {
 	var body dtos.QuestionDto
 	if err := ctx.BodyParser(&body); err != nil {
-		log.Errorf("Failed to parse request body: %v", err)
+		log.Errorf("failed to parse request body: ", err)
 		return ctx.
 			Status(fiber.StatusInternalServerError).
 			JSON(lightsabers.GetErrorResponse("Failed to parse request body", err))
@@ -22,7 +22,7 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 
 	err := services.ValidateStruct(&body)
 	if err != nil {
-		log.Errorf("Failed to validate body: %v", err)
+		log.Errorf("failed to validate body: ", err)
 		return ctx.
 			Status(fiber.StatusBadRequest).
 			JSON(lightsabers.GetErrorResponse("Invalid request body", err))
@@ -33,7 +33,7 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 
 	session, err := ConvoSessionStore.Get(ctx)
 	if err != nil {
-		log.Errorf("Failed to get convo session: %v", err)
+		log.Errorf("failed to get convo session: ", err)
 		return ctx.
 			Status(fiber.StatusInternalServerError).
 			JSON(lightsabers.GetErrorResponse("Failed to get convo session", err))
@@ -43,14 +43,14 @@ func KnowledgeBase(ctx *fiber.Ctx) error {
 
 	ans, err := preferredBot.GetAnswer(body.Question, chatSessionId)
 	if err != nil {
-		log.Errorf("Failed to get answer: %v", err)
+		log.Errorf("failed to get answer: ", err)
 		return ctx.
 			Status(fiber.StatusInternalServerError).
 			JSON(lightsabers.GetErrorResponse("Failed to get answer", err))
 	}
 
 	if err = session.Save(); err != nil {
-		log.Errorf("Failed to save session: %s", err)
+		log.Errorf("failed to save session: ", err)
 	}
 
 	return ctx.

@@ -6,84 +6,128 @@ package repository
 
 import (
 	"database/sql"
+	"database/sql/driver"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/google/uuid"
 )
 
+type Organisationstatus string
+
+const (
+	OrganisationstatusInactive Organisationstatus = "inactive"
+	OrganisationstatusActive   Organisationstatus = "active"
+)
+
+func (e *Organisationstatus) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = Organisationstatus(s)
+	case string:
+		*e = Organisationstatus(s)
+	default:
+		return fmt.Errorf("unsupported scan type for Organisationstatus: %T", src)
+	}
+	return nil
+}
+
+type NullOrganisationstatus struct {
+	Organisationstatus Organisationstatus `json:"organisationstatus"`
+	Valid              bool               `json:"valid"` // Valid is true if Organisationstatus is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullOrganisationstatus) Scan(value interface{}) error {
+	if value == nil {
+		ns.Organisationstatus, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.Organisationstatus.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullOrganisationstatus) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.Organisationstatus), nil
+}
+
 type ObiwanApikey struct {
-	ID        uuid.UUID
-	Projectid uuid.UUID
-	Key       string
-	Createdat time.Time
-	Updatedat time.Time
-	Deletedat sql.NullTime
+	ID        uuid.UUID    `json:"id"`
+	Projectid uuid.UUID    `json:"projectid"`
+	Key       string       `json:"key"`
+	Createdat time.Time    `json:"createdat"`
+	Updatedat time.Time    `json:"updatedat"`
+	Deletedat sql.NullTime `json:"deletedat"`
 }
 
 type ObiwanOrganisation struct {
-	ID                  uuid.UUID
-	Name                string
-	Description         sql.NullString
-	Address             sql.NullString
-	City                sql.NullString
-	State               sql.NullString
-	Zip                 sql.NullString
-	Phone               sql.NullString
-	Website             sql.NullString
-	Email               string
-	Status              interface{}
-	Preferredbotservice sql.NullString
-	Createdat           time.Time
-	Updatedat           time.Time
-	Deletedat           sql.NullTime
+	ID                  uuid.UUID          `json:"id"`
+	Name                string             `json:"name"`
+	Description         sql.NullString     `json:"description"`
+	Address             sql.NullString     `json:"address"`
+	City                sql.NullString     `json:"city"`
+	State               sql.NullString     `json:"state"`
+	Zip                 sql.NullString     `json:"zip"`
+	Phone               sql.NullString     `json:"phone"`
+	Website             sql.NullString     `json:"website"`
+	Email               string             `json:"email"`
+	Status              Organisationstatus `json:"status"`
+	Preferredbotservice sql.NullString     `json:"preferredbotservice"`
+	Createdat           time.Time          `json:"createdat"`
+	Updatedat           time.Time          `json:"updatedat"`
+	Deletedat           sql.NullTime       `json:"deletedat"`
 }
 
 type ObiwanOrganisationprofile struct {
-	ID               uuid.UUID
-	Organisationid   uuid.UUID
-	Initialquestions json.RawMessage
-	Createdat        time.Time
-	Updatedat        time.Time
-	Deletedat        sql.NullTime
+	ID               uuid.UUID       `json:"id"`
+	Organisationid   uuid.UUID       `json:"organisationid"`
+	Initialquestions json.RawMessage `json:"initialquestions"`
+	Createdat        time.Time       `json:"createdat"`
+	Updatedat        time.Time       `json:"updatedat"`
+	Deletedat        sql.NullTime    `json:"deletedat"`
 }
 
 type ObiwanProject struct {
-	ID             uuid.UUID
-	Organisationid uuid.UUID
-	Name           string
-	Description    sql.NullString
-	Createdat      time.Time
-	Updatedat      time.Time
-	Deletedat      sql.NullTime
+	ID             uuid.UUID      `json:"id"`
+	Organisationid uuid.UUID      `json:"organisationid"`
+	Name           string         `json:"name"`
+	Description    sql.NullString `json:"description"`
+	Createdat      time.Time      `json:"createdat"`
+	Updatedat      time.Time      `json:"updatedat"`
+	Deletedat      sql.NullTime   `json:"deletedat"`
 }
 
 type ObiwanProjectsorganisation struct {
-	ID             uuid.UUID
-	Projectid      uuid.UUID
-	Organisationid uuid.UUID
-	Createdat      time.Time
-	Updatedat      time.Time
-	Deletedat      sql.NullTime
+	ID             uuid.UUID    `json:"id"`
+	Projectid      uuid.UUID    `json:"projectid"`
+	Organisationid uuid.UUID    `json:"organisationid"`
+	Createdat      time.Time    `json:"createdat"`
+	Updatedat      time.Time    `json:"updatedat"`
+	Deletedat      sql.NullTime `json:"deletedat"`
 }
 
 type ObiwanUser struct {
-	ID        uuid.UUID
-	Email     string
-	Password  string
-	Firstname string
-	Lastname  string
-	Dob       time.Time
-	Createdat time.Time
-	Updatedat time.Time
-	Deletedat sql.NullTime
+	ID        uuid.UUID    `json:"id"`
+	Email     string       `json:"email"`
+	Password  string       `json:"password"`
+	Firstname string       `json:"firstname"`
+	Lastname  string       `json:"lastname"`
+	Dob       time.Time    `json:"dob"`
+	Createdat time.Time    `json:"createdat"`
+	Updatedat time.Time    `json:"updatedat"`
+	Deletedat sql.NullTime `json:"deletedat"`
 }
 
 type ObiwanUsersorganisation struct {
-	ID             uuid.UUID
-	Organisationid uuid.UUID
-	Userid         uuid.UUID
-	Createdat      time.Time
-	Updatedat      time.Time
-	Deletedat      sql.NullTime
+	ID             uuid.UUID    `json:"id"`
+	Organisationid uuid.UUID    `json:"organisationid"`
+	Userid         uuid.UUID    `json:"userid"`
+	Createdat      time.Time    `json:"createdat"`
+	Updatedat      time.Time    `json:"updatedat"`
+	Deletedat      sql.NullTime `json:"deletedat"`
 }

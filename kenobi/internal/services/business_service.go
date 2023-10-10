@@ -15,3 +15,8 @@ func CreateUserWithCtx(ctx context.Context, body repository.CreateUserParams) (r
 	q, _ := repository.GetDbQueries()
 	return q.CreateUser(ctx, body)
 }
+
+func GetUsersWithCtx(ctx context.Context) ([]repository.ObiwanUser, error) {
+	q, _ := repository.GetDbQueries()
+	return q.ListUsers(ctx)
+}

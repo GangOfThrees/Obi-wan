@@ -22,11 +22,11 @@ RETURNING id, email, password, firstname, lastname, dob, createdat, updatedat, d
 `
 
 type CreateUserParams struct {
-	Email     string
-	Password  string
-	Firstname string
-	Lastname  string
-	Dob       time.Time
+	Email     string    `json:"email"`
+	Password  string    `json:"password"`
+	Firstname string    `json:"firstname"`
+	Lastname  string    `json:"lastname"`
+	Dob       time.Time `json:"dob"`
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (ObiwanUser, error) {
@@ -134,10 +134,10 @@ RETURNING id, email, password, firstname, lastname, dob, createdat, updatedat, d
 `
 
 type UpdateUserParams struct {
-	ID        uuid.UUID
-	Firstname string
-	Lastname  string
-	Dob       time.Time
+	ID        uuid.UUID `json:"id"`
+	Firstname string    `json:"firstname"`
+	Lastname  string    `json:"lastname"`
+	Dob       time.Time `json:"dob"`
 }
 
 func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (ObiwanUser, error) {

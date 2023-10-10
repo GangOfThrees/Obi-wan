@@ -43,4 +43,5 @@ func registerBotRoutes(app *fiber.App) {
 func registerUserRoutes(app *fiber.App) {
 	userRoutes := app.Group("/users")
 	userRoutes.Post("/", CreateUser)
+	userRoutes.Get("/", GetUsers)
 }
